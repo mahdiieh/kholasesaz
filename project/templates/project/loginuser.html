@@ -1,0 +1,130 @@
+{% extends 'project/base.html' %}
+
+
+{% block content %}
+{% load static %}
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{{ Title }}</title>
+        <style type="text/css">
+
+            body {
+              background: #9CE9E2;
+              background-repeat: no-repeat;
+              background-size:cover;
+              background-attachment: fixed;
+              color: #000;
+              font: 2.5vh Bnazanin;
+              margin: 0vh auto;
+              padding: 0vh;
+              position: center;
+             }
+
+            .form {
+              background: #41CAD6;
+              padding: 10vh;
+              max-width: 85vh;
+              margin: 15vh auto;
+              border-radius: 10vh;
+              box-shadow: 0 4px 10px 4px rgba(128, 128, 128, 0.3);
+              }
+
+            .image{
+                position: absolute;
+                left: -5vh;
+                top: -10vh;
+                width: 100vh;
+                height: 100vh;
+            }
+            .title {
+                position: absolute;
+                margin: 4vh auto;
+                left: 50%;
+                transform: translateX(-75%);
+                font-size: 5vh;
+            }
+            .centerEnter {
+                font-size: 3vh;
+                width: 32vh;
+            }
+
+            .mySignup{
+                position: absolute;
+                margin-right: 0vh;
+                top: 55vh;
+            }
+
+
+            .width{
+                width: 100%;
+                max-width: 35vh;
+                margin: 3vh auto;
+                margin-right: 0.5vh;
+            }
+            .containerA {
+                position: relative;
+                height: 27vh;
+                text-align: right;
+            }
+
+             .btn {
+                border-radius: 5vh;
+                padding: 1vh 3vh;
+                background-color: #395D9C;
+                color: white;
+                font-size: 2.5vh;
+             }
+
+            .form-control {
+                border-radius: 10vh;
+                width: 80%;
+                background: #CBFFFA;
+            }
+            .myalert{
+                margin: -20vh 10vh;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div class="form">
+            <div class=" center">
+                <button class="btn  w-100 mx-auto centerEnter" style="background-color:#CBFFFA; border-style:solid; border-color: black"><a href="{% url 'signupuser' %}"><font style="color: black"> ثبت نام</font></a></button>
+                <button class="btn  w-100 centerEnter" style="background-color:#CBFFFA; border-style:solid; border-color:black"><a href="{% url 'loginuser' %}"><font style="color: black"> ورود</font></a></button>
+            </div>
+                <h1 class="title containerA">ورود به حساب کاربری</h1>
+                <img class="image containerA" src="{% static 'project/login.png' %}"  >
+
+            <form method="POST" class="mySignup width">
+                {% if error %}
+                    <div role="alert" dir="rtl">
+                        <h4>{{ error }}</h4>
+                        <br>
+                    </div>
+                {% endif %}
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username"><b>نام کاربری</b><span>*</span></label>
+                    <input type="text" name="username" class="form-control btn" style="color:black" id="username" aria-describedby="usernameHelp" required>
+                </div>
+                <div class="form-group">
+                    <label for="password1"><b>رمز عبور</b><span>*</span></label>
+                    <input type="password" name="password1" class="form-control btn" style="color:black"id="password1" required>
+                </div>
+                <br>
+                <a href="{% url 'loginuser' %}">
+                    <img src="{% static 'project/reload.jpg' %}" width="30" height="20" >
+                </a>
+                {{form.captcha}}
+
+                <br>
+                <br>
+                <button type="submit" class="btn "> ورود</button>
+            </form>
+        </div> <!-- /form -->
+    </body>
+
+</html>
+{% endblock %}

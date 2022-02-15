@@ -1,0 +1,99 @@
+{% extends 'project/base.html' %}
+
+
+{% block content %}
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{{ Title }}</title>
+        <style type="text/css">
+            body {
+              background: #A7F4FB;
+              background-repeat: no-repeat;
+              background-size:cover;
+              background-attachment: fixed;
+              color: #000;
+              font: 14px Bnazanin;
+              margin: 0 auto;
+              padding: 0;
+              position: center;
+             }
+            .form {
+              background: #41CAD6;
+              padding: 40px;
+              max-width: 900px;
+              margin: 70px auto;
+              border-radius: 20px;
+              box-shadow: 0 4px 10px 4px rgba(128, 229, 255, 0.3);
+              }
+            .btn {
+                position: relative;
+                margin: 2vh 50vh;
+                border-radius: 10px;
+                padding: 1vh 5vh;
+                background-color: #395D9C;
+                color: white;
+                font-size: 20px;
+            }
+            .mytitle {
+                position: relative;
+                margin: auto auto;
+                transform: translateX(-5%);
+            }
+             .outform {
+              background: #92D8E4;
+              padding: 40px;
+              max-width: 900px;
+              margin: 70px auto;
+              border-radius: 20px;
+              border-style: double;
+              border-width:7px;
+              border-color:black;
+              box-shadow: 0 4px 10px 4px rgba(128, 229, 255, 0.3);
+              font-size :20px;
+              }
+              .contentdiv{
+                  border-style: solid;
+                  border-width:3px;
+                  border-color:black;
+                  position: relative;
+                  margin: auto auto;
+                  transform: translateX(0%);
+                  margin-top: 20px;
+                  width: 100%;
+                  font-size: 20px;
+                  color:black;
+                  text-align: justify;
+              }
+        </style>
+    </head>
+    <body>
+        <form method="POST">
+             {% csrf_token %}
+             <div class="form">
+                 {% if error%}
+                    <div class="alert alert-danger" role="alert">
+                         {{ error }}
+                    </div>
+                 {% endif%}
+                 <h2 class="mytitle">متن خود را در کادر زیر وارد کرده و پس از فشردن دکمه پردازش تا دریافت نتیجه شکیبا باشید.</h2>
+
+                 <div class="form-group">
+                    <label for="name" ></label>
+                    <textarea  name="name" class=" text_area is_empty  contentdiv"  id="name" placeholder="   عنوان متن را وارد کنید " required></textarea>
+                 </div>
+                 <label for="inputtxt"></label>
+                 <textarea name="text" class=" text_area is_empty  contentdiv" cols="70" rows="8" id="inputtxt"  data-post_id="text" placeholder="  متن خود را وارد کنید"></textarea>
+                 <button class="btn">پردازش</button>
+
+             </div>
+             <div class="outform">
+                 <h3>خلاصه:</h3>
+                 <br>
+                 {{summary}}
+             </div>
+        </form>
+    </body>
+</html>
+
+{% endblock %}

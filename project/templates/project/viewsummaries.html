@@ -1,0 +1,103 @@
+{% extends 'project/base.html' %}
+
+
+{% block content %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ Title }}</title>
+    </head>
+    <style>
+        body {
+          background:#7FE7F5;
+          background-repeat: no-repeat;
+          background-size:cover;
+          background-attachment: fixed;
+          color: #000;
+          font: 14px Bnazanin;
+          margin: 0 auto;
+          padding: 0;
+          position: center;
+         }
+        .formA{
+          background: #2FD2E0;
+          padding: 40px;
+          max-width: 1000px;
+          margin: 80px auto;
+          border-radius: 20px;
+          box-shadow: 0 4px 10px 4px rgba(128, 128, 128, 0.3);
+        }
+        .formB{
+          background: #7CE6E7;
+          padding: 40px;
+          max-width: 900px;
+          margin: 20px auto;
+          border-radius: 40px;
+          box-shadow: 0 4px 10px 4px rgba(128, 128, 128, 0.3);
+          text-align:right;
+          }
+        .center {
+            align-items: center;
+            margin-left: 8px;
+        }
+        .name{
+            font-size:20px;
+            text-align: center;
+            position: relative;
+            transform: translateX(0%);
+            max-width: 900px;
+            margin: 10px auto;
+            border-radius: 10px;
+            border-style: solid;
+            border-width:2px;
+            border-color:black;
+        }
+         .btn {
+            margin: 10px auto;
+            border-radius: 10px;
+            padding: 10px 30px;
+            background-color: #395D9C;
+            color: white;
+            font-size: 20px;
+            align-item:center;
+        }
+
+
+    </style>
+    <body>
+        <div class="formA">
+            <div class="formB">
+               <h2> عنوان :</h2>
+                <div class="name">
+                    <b> {{summary.name}}</b>
+                </div>
+            </div>
+            <div class="formB">
+                <h2>متن ورودی:</h2>
+                <div class="name">
+                    {{summary.inputData}}
+                </div>
+            </div>
+            <div class="formB">
+                <h2>خلاصه:</h2>
+                <div class="name">
+                    {{summary.outputData}}
+                </div>
+            </div>
+            <div class="formB">
+                <h2>زمان:</h2>
+                <div class="name">
+                    <font size="5"> {{summary.datecompleted}}</font>
+                </div>
+            </div>
+
+            <form method="POST" action="{% url 'deletesummary' summary.id %}">
+                {% csrf_token %}
+                <button class="btn" id="delete" type="submit">پاک کردن</button>
+            </form>
+        </div>
+
+
+    </body>
+</html>
+{% endblock %}

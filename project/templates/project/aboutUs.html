@@ -1,0 +1,131 @@
+{% extends 'project/base.html' %}
+
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ Title }}</title>
+</head>
+<style>
+body {
+  background:#7FE7F5;
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  color: #000;
+  font: 14px Bnazanin;
+  margin: 0 auto;
+  padding: 0;
+  position: center;
+ }
+.divcontent {
+    text-align: justify;
+    direction: rtl;
+    margin : 10px 60px;
+    font-size : 25px;
+    font: Bnazanin;
+}
+.form {
+  background: #3CB6C7;
+  padding: 40px;
+  max-width: 600px;
+  margin: 40px auto;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px 4px rgba(128, 128, 128, 0.3);
+  }
+.center {
+    align-items: center;
+    margin-left: 8px;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: right;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: right;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/ Clear floats after the columns /
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/ Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other /
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+
+
+    </style>
+    <body>
+<div class="form">
+        <font size="5.5">
+            <div class="col-mid-5 center">
+                <p class="divcontent" >
+                    <h1>خوش آمدید</h1>
+                </p>
+            </div>
+            <br>
+            سلام ما دانشجویان کارشناسی رشته مهندسی کامپیوتر برای پروژه خودمان با راهنمایی جناب آقای دکتر محمدجواد فدایی اسلام سعی کردیم یک سایت پردازش و خلاصه ساز متون فارسی بسازیم.
+            <br>
+             مهدیه شکریان
+            <br>
+            حدیث طاهریان
+            </font>
+
+</div>
+
+
+    </body>
+</html>
+{% endblock %}

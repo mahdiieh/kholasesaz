@@ -1,0 +1,98 @@
+{% extends 'project/base.html' %}
+
+
+{% block content %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ Title }}</title>
+    </head>
+    <style>
+        body {
+          background:#7FE7F5;
+          background-repeat: no-repeat;
+          background-size:cover;
+          background-attachment: fixed;
+          color: #000;
+          font: 14px Bnazanin;
+          margin: 0 auto;
+          padding: 0;
+          position: center;
+         }
+        .btn {
+            margin: 10px auto;
+            border-radius: 10px;
+            padding: 10px 30px;
+            background-color: #395D9C;
+            color: white;
+            font-size: 20px;
+            margin-right: 200px;
+        }
+        .form {
+          background: #41CAD6;
+          padding: 40px;
+          max-width: 600px;
+          margin: 70px auto;
+          border-radius: 50px;
+          box-shadow: 0 4px 10px 4px rgba(128, 128, 128, 0.3);
+         }
+        .mytitle{
+            font-size: 30px;
+            face: Bnazanin;
+            color: #000080;
+            padding: 10px;
+            transform: translateX(-20%);
+         }
+        .formA{
+            padding: 20px;
+        }
+        .formB{
+            padding: 10px 20px;
+            font-size:20px;
+            color: #000080;
+         }
+
+        .form-control {
+            border-radius: 10px;
+            width: 80%;
+            height: 40px;
+            background: #CBFFFA;
+            margin-right: 50px;
+        }
+
+
+    </style>
+    <body>
+        <div class="form">
+            <h1 class="mytitle"><strong>تغییر اطلاعات حساب کاربری</strong></h1>
+            {{ error }}
+            <form method="post">
+                {% csrf_token %}
+                <div class="formA">
+                    <div class="form-group">
+                        <label for="old_username" class="color formB">نام کاربری قدیمی:<span>*</span></label>
+                        <input type="text" name="old_username" class="form-control center" id="old_username" aria-describedby="usernameHelp" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="New_username" class="color formB">نام کاربری جدید: <span>*</span></label>
+                        <input type="text" name="New_username" class="form-control center" id="New_username" aria-describedby="usernameHelp" required>
+                    </div>
+                    <div class="form-group center">
+                        <label for="old_password" class="formB">رمز عبور قدیمی: <span>*</span></label>
+                        <input type="password" name="old_password" class="form-control" id="old_password" required>
+                    </div>
+                    <div class="form-group center">
+                        <label for="password1" class="formB">رمز عبور جدید: <span>*</span></label>
+                        <input type="password" name="password1" class="form-control" id="password1" required>
+                    </div>
+                    <div class="form-group center">
+                        <label for="password2" class="formB">تایید رمز عبور:<span>*</span></label>
+                        <input type="password" name="password2" class="form-control" id="password2" required>
+                    </div>
+                </div>
+                <button  type="submit" class="btn btn-success">تغییر دادن</button>
+            </form>
+        </div>
+    </body>
+</html>
+{% endblock %}

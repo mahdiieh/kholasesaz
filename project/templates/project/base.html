@@ -1,0 +1,188 @@
+{% load static %}
+
+<html lang="en" dir="rtl">
+  <head>
+      <style>
+          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+          *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+          }
+          nav{
+            display: flex;
+            height: 9vh;
+            width: 100%;
+            background: #2FD2E0;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10vh 0 5vh;
+            flex-wrap: wrap;
+          }
+          nav .logo{
+            color: #fff;
+            font-size: 5vh;
+            font-weight: 600;
+            margin-right : -3vh;
+          }
+          nav ul{
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+          }
+          nav ul li{
+            margin: 0 1vh;
+          }
+          nav ul li a{
+            color: #f2f2f2;
+            text-decoration: none;
+            font-size: 2vh;
+            font-weight: 500;
+            padding: 2vh 1vh;
+            border-radius: 5px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+          }
+          nav ul li a.active,
+          nav ul li a:hover{
+            color: #111;
+            background: #fff;
+          }
+          nav .menu-btn i{
+            color: #fff;
+            font-size: 5vh;
+            cursor: pointer;
+            display: none;
+          }
+
+          input[type="checkbox"]{
+            display: none;
+          }
+          @media (max-width: 1000px){
+            nav{
+              padding: 0 10vh 0 10vh;
+            }
+          }
+          @media (max-width: 980px) {
+            nav .menu-btn i{
+              display: block;
+            }
+            #click:checked ~ .menu-btn i:before{
+              content: "\f00d";
+            }
+
+
+            nav ul{
+              position: absolute;
+              top: 50px;
+              left: -100%;
+              background: #111;
+              height: 200vh;
+              width: 100%;
+              text-align: center;
+              display: block;
+              transition: all 0.3s ease;
+
+            }
+            #click:checked ~ ul{
+              left: 0;
+              z-index:1000;
+
+            }
+
+
+            nav ul li{
+              width: 100%;
+              margin: 40px 0;
+            }
+            #click:checked ~ ul li a{
+              margin-left: 0px;
+            }
+            nav ul li a.active,
+            nav ul li a:hover{
+              background: none;
+              color: cyan;
+
+            }
+          }
+          .btnA{
+            border-radius:10px;
+            background-color: #191970 ;
+            left:0px;
+            height:45px;
+            width:50px;
+            color: white;
+            font-size: 20px;
+          }
+          .dropdown {
+              position: relative;
+              display: inline-block;
+              letter-spacing: 1px;
+           }
+
+          .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #2FD2E0;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(1,1,1,1);
+            padding: 16px 16px;
+            z-index: 1;
+
+          }
+
+          .dropdown:hover .dropdown-content {
+            display: block;
+            color: black;
+
+          }
+          .myli{
+            margin: 0 2vh;
+          }
+
+      </style>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+      <link rel="icon" type="image/png"  href="{% static 'project/images.png' %}">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <nav>
+
+      <div class="logo">
+        <img src="{% static 'project/images.png' %}" width="80" height="50" >
+        <font class="myfont" color=#191970> سرویس خلاصه ساز آنلاین</font>
+      </div>
+        <input type="checkbox" id="click">
+        <label for="click" class="menu-btn"><i class="fas fa-bars"></i></label>
+
+        <ul>
+          <li class="active"><a href="{% url 'home' %} "><font size="5" >صفحه اصلی</font></a></li>
+          <li><a href="{% url 'aboutUs' %}" ><font size="5">درباره ما</font></a></li>
+
+          <div class="dropdown"><span><font color="white" size="5"> خدمات</font></span>
+                <div class="dropdown-content">
+                  <li ><a href="{% url 'summaryServices' %}" ><font size="3" > خلاصه ساز</font></a></li>
+                  {% if user.is_authenticated %}
+                    <li><a href="{% url 'edit' %}" ><font size="3">ویرایش پروفایل</font></a></li>
+                    <li><a href="{% url 'allsummaries' %}" ><font size="3">تاریخچه خلاصه ها</font></a></li>
+                  {% endif %}
+                </div>
+          </div>
+        {% if user.is_authenticated %}
+          <li class="myli"><font size="5" face="Bnazanin" color="white">خوش آمدید {{ user.username }}</font></li>
+          <form action="{% url 'logoutuser' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btnA btn-danger" >خروج</button>
+          </form>
+        {% else %}
+          <li><a href="{% url 'signupuser' %}"><span class="glyphicon glyphicon-user"></span><font size="5"> ثبت نام</font></a></li>
+          <li><a href="{% url 'loginuser' %}"><span class="glyphicon glyphicon-log-in"></span><font size="5"> ورود</font></a></li>
+        {% endif %}
+        </ul>
+    </nav>
+  </body>
+
+  {% block content %}{% endblock %}
+</html>

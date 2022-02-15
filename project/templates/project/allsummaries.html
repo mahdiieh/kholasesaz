@@ -1,0 +1,76 @@
+{% extends 'project/base.html' %}
+
+
+{% block content %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ Title }}</title>
+    </head>
+    <style>
+        body {
+          background:#7FE7F5;
+          background-repeat: no-repeat;
+          background-size:cover;
+          background-attachment: fixed;
+          color: #000;
+          font: 14px Bnazanin;
+          margin: 0 auto;
+          padding: 0;
+          position: center;
+         }
+
+        .form {
+          background: #3CB6C7;
+          padding: 40px;
+          max-width: 600px;
+          margin: 40px auto;
+          border-radius: 50px;
+          box-shadow: 0 4px 10px 4px rgba(128, 128, 128, 0.3);
+          }
+        .center {
+            align-items: center;
+            margin-left: 8px;
+        }
+
+        table, th, td {
+            padding: 10px;
+            border: 5px solid #191970;
+            border-collapse: collapse;
+
+        }
+        th, td {
+<!--          background-color: #2FD2E0;-->
+          border:3px solid black;
+
+        }
+        .divcontent{
+            margin: 50px 50px;
+        }
+        tr:nth-child(even) {
+          background-color: #D6EEEE;
+         }
+    </style>
+    <body>
+<div class="divcontent">
+        <table style="width:100%">
+            <tr>
+                <th style="width:15%"><b><h2>عنوان</h2></b></th>
+                <th style="width:60%"><b><h2>داده ورودی</h2></b></th>
+                <th style="width:10%"><b><h2> کاربر</h2></b></th>
+                <th style="width:15%"><b><h2>زمان</h2></b></th>
+            </tr>
+            {% for s in summaries%}
+              <tr>
+                  <td><a href="{% url 'viewsummaries' s.id %}"> {{s.name}}</a></td>
+                  <td>{{s.outputData}}...</td>
+                  <td>{{s.user}}</td>
+                  <td>{{s.datecompleted}}</td>
+              </tr>
+            {% endfor %}
+    </table>
+
+</div>
+    </body>
+</html>
+{% endblock %}
